@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">QuizApp!!</string>
+    <string name="welcome">Welcome</string>
+    <string name="msg">Please enter your name</string>
+    <string name="name">Name</string>
+    <string name="start">START</string>
+    <string name="image">quiz image</string>
+    <string name="submit">SUBMIT</string>
+    <string name="result">RESULT</string>
+    <string name="congrats">Congratulations!</string>
+    <string name="again">AGAIN</string>
+    <string name="exit">EXIT</string>
+    <string name="back">BACK</string>
+    <string name="hint">!</string>
+    <string name="answers">ANSWERS</string>
+    <string name="answers_"><u>ANSWERS!!</u>.</string>
+    <string name="answers1">India</string>
+    <string name="answers2">Argentina</string>
+    <string name="answers3">Australia</string>
+    <string name="answers4">Belgium</string>
+    <string name="answers5">Brazil</string>
+    <string name="answers6">Denmark</string>
+    <string name="answers7">Fiji Island</string>
+    <string name="answers8">Germany</string>
+    <string name="answers9">Kuwait</string>
+    <string name="answers10">New Zealand</string>
+
+</resources>

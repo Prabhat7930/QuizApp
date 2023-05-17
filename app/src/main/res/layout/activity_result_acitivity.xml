@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ResultAcitivity"
+    android:orientation="vertical"
+    android:background="@drawable/ic_bg"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="50dp"
+        android:text="@string/result"
+        android:gravity="center"
+        android:textSize="25sp"
+        android:textColor="@color/white">
+    </TextView>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/goldMedal"
+            android:layout_width="250dp"
+            android:layout_height="200dp"
+            android:contentDescription="@string/image"
+            android:layout_marginTop="-30dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_gold_medal"
+            android:visibility="gone">
+        </ImageView>
+
+        <ImageView
+            android:id="@+id/silverMedal"
+            android:layout_width="210dp"
+            android:layout_height="150dp"
+            android:contentDescription="@string/image"
+            android:layout_marginTop="0dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_silver_medal"
+            android:visibility="gone">
+        </ImageView>
+
+        <ImageView
+            android:id="@+id/bronzeMedal"
+            android:layout_width="200dp"
+            android:layout_height="120dp"
+            android:contentDescription="@string/image"
+            android:layout_marginTop="0dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_bronze_medal"
+            android:visibility="visible">
+        </ImageView>
+
+        <ImageView
+            android:id="@+id/sadEmoji"
+            android:layout_width="200dp"
+            android:layout_height="120dp"
+            android:contentDescription="@string/image"
+            android:layout_marginTop="0dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_sad_emoji"
+            android:visibility="gone">
+        </ImageView>
+
+    </FrameLayout>
+
+
+    <TextView
+        android:id="@+id/finalmsg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/congrats"
+        android:gravity="center"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="@color/white">
+    </TextView>
+    
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="@string/result"
+        android:gravity="center"
+        android:textSize="25sp"
+        android:textColor="@color/white">
+    </TextView>
+
+    <TextView
+        android:id="@+id/score"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textColor="@android:color/secondary_text_dark"
+        tools:text="Your score is 9 out of 10">
+    </TextView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/answers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginLeft="100dp"
+        android:text="@string/answers"
+        android:textSize="20sp"
+        android:textColor="@color/purple_700"
+        android:background="@drawable/other1_option_button_bg">
+    </androidx.appcompat.widget.AppCompatButton>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/again"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginLeft="100dp"
+        android:text="@string/again"
+        android:textSize="20sp"
+        android:textColor="@color/purple_700"
+        android:background="@drawable/other1_option_button_bg"
+        android:backgroundTint="@color/white"
+        >
+    </androidx.appcompat.widget.AppCompatButton>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/exit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginLeft="100dp"
+        android:text="@string/exit"
+        android:textSize="20sp"
+        android:textColor="@color/purple_700"
+        android:background="@drawable/other1_option_button_bg">
+    </androidx.appcompat.widget.AppCompatButton>
+
+</LinearLayout>
