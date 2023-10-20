@@ -60,7 +60,7 @@ class ResultAcitivity : AppCompatActivity() {
                 sadEmoji.visibility = View.GONE
             }
             else -> {
-                Toast.makeText(this, "Ohh! ${intent.getStringExtra(Constants.userName)} you Failed...Go Study!", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Ohh! Poor ${intent.getStringExtra(Constants.userName)} you Failed...Go Study!", Toast.LENGTH_LONG).show()
                 finalMsg.text = "Ohhh!"
                 goldMedal.visibility = View.GONE
                 silverMedal.visibility = View.GONE

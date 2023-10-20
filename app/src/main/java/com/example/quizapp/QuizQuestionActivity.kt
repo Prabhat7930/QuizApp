@@ -4,11 +4,13 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.google.android.material.snackbar.Snackbar
 
 class QuizQuestionActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -31,6 +33,8 @@ class QuizQuestionActivity : AppCompatActivity(), View.OnClickListener {
     private var optionTwo : TextView ? = null
     private var optionThree : TextView ? = null
     private var optionFour : TextView ? = null
+
+    private var sure : Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,7 +71,18 @@ class QuizQuestionActivity : AppCompatActivity(), View.OnClickListener {
 
     @SuppressLint("SetTextI18n")
     private fun questionSet() {
+
+        optionOne?.isEnabled = true
+        optionTwo?.isEnabled = true
+        optionThree?.isEnabled = true
+        optionFour?.isEnabled = true
+        submit?.isEnabled = true
+        sure = false
+
         defaultOptionView()
+        hintBulb?.visibility = View.INVISIBLE
+        txtHint?.text = ""
+        mySelectedOptionPosition = 0
         val question: Question = myQuestionList!![myCurrentPosition - 1]
         progressBar?.progress = myCurrentPosition
         txtProgress?.text = "$myCurrentPosition/${progressBar?.max}"
@@ -82,6 +97,7 @@ class QuizQuestionActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun defaultOptionView() {
+
         val option = ArrayList<TextView>()
         optionOne?.let {
             option.add(0, it)
@@ -117,53 +133,54 @@ class QuizQuestionActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(view: View?) {
         when(view?.id) {
             R.id.optionOne -> {
-                submit?.text = "SUBMIT"
                 optionOne?.let {
                     selectedOptionView(it, 1)
                 }
             }
             R.id.optionTwo -> {
-                submit?.text = "SUBMIT"
                 optionTwo?.let {
                     selectedOptionView(it, 2)
                 }
             }
             R.id.optionThree -> {
-                submit?.text = "SUBMIT"
                 optionThree?.let {
                     selectedOptionView(it, 3)
                 }
             }
             R.id.optionFour -> {
-                submit?.text = "SUBMIT"
                 optionFour?.let {
                     selectedOptionView(it, 4)
                 }
             }
             R.id.submit ->{
-                submit?.text = "SUBMIT"
-                if (myCurrentPosition == myQuestionList!!.size)
+                if (myCurrentPosition == myQuestionList!!.size -1 )
                     submit?.text = "FINISH"
 
-                if (mySelectedOptionPosition == 0) {
-                    myCurrentPosition++
+                if (mySelectedOptionPosition == 0 && !sure) {
+                    Snackbar.make(
+                        findViewById(android.R.id.content),
+                        "You have not Selected any option. Are you Sure?", Snackbar.LENGTH_SHORT
+                    ).show()
 
-                    hintBulb?.visibility = View.INVISIBLE
-                    txtHint?.text = ""
+                    sure = true
+                }
+                else if (mySelectedOptionPosition == 0 && sure) {
+                        myCurrentPosition++
 
-                    when {
-                        myCurrentPosition <= myQuestionList!!.size ->{
-                            questionSet()
+                        when {
+                            myCurrentPosition <= myQuestionList!!.size ->{
+                                questionSet()
+                            }
+                            else -> {
+                                val intent2 = Intent(this, ResultAcitivity::class.java)
+                                intent2.putExtra(Constants.userName, myUserName)
+                                intent2.putExtra(Constants.correctAnswers, myCorrectAnswer)
+                                intent2.putExtra(Constants.totalQuestions, myQuestionList!!.size)
+                                startActivity(intent2)
+                                finish()
+                            }
                         }
-                        else -> {
-                            val intent2 = Intent(this, ResultAcitivity::class.java)
-                            intent2.putExtra(Constants.userName, myUserName)
-                            intent2.putExtra(Constants.correctAnswers, myCorrectAnswer)
-                            intent2.putExtra(Constants.totalQuestions, myQuestionList!!.size)
-                            startActivity(intent2)
-                            finish()
-                        }
-                    }
+
                 }
                 else {
                     val question : Question = myQuestionList!![myCurrentPosition - 1]
@@ -197,11 +214,30 @@ class QuizQuestionActivity : AppCompatActivity(), View.OnClickListener {
                     }
                     else {
                         myCorrectAnswer++
-                        answerCheck(question.correctOption, R.drawable.wrong_option_bg)
+                        answerCheck(question.correctOption, R.drawable.correct_option_bg)
                     }
 
-                    if (myCurrentPosition < myQuestionList!!.size)
-                        submit?.text = "NEXT"
+                    if (myCurrentPosition < myQuestionList!!.size) {
+                        optionOne?.isEnabled = false
+                        optionTwo?.isEnabled = false
+                        optionThree?.isEnabled = false
+                        optionFour?.isEnabled = false
+                        submit?.isEnabled = false
+
+                        Handler().postDelayed({
+                            myCurrentPosition++
+                            questionSet()
+                        }, 800)
+                    }
+                    else{
+                        val intent2 = Intent(this, ResultAcitivity::class.java)
+                        intent2.putExtra(Constants.userName, myUserName)
+                        intent2.putExtra(Constants.correctAnswers, myCorrectAnswer)
+                        intent2.putExtra(Constants.totalQuestions, myQuestionList!!.size)
+                        startActivity(intent2)
+                        finish()
+                    }
+
 
                     mySelectedOptionPosition = 0
                 }
@@ -240,7 +276,7 @@ class QuizQuestionActivity : AppCompatActivity(), View.OnClickListener {
             5 -> txtHint?.text = "Christ the Redeemer"
             6 -> txtHint?.text = "Danish"
             7 -> txtHint?.text = "Coral capital of the World"
-            8 -> txtHint?.text = "Nazi"
+            8 -> txtHint?.text = "Mein Kampf"
             9 -> txtHint?.text = "Dinar"
             10 -> txtHint?.text = "Kiwi"
         }

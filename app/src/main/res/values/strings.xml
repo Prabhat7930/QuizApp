@@ -10,6 +10,8 @@
     <string name="congrats">Congratulations!</string>
     <string name="again">AGAIN</string>
     <string name="exit">EXIT</string>
+    <string name="credit">App Developed By</string>
+    <string name="developer">Prabhat Kumar Rai</string>
     <string name="back">BACK</string>
     <string name="hint">!</string>
     <string name="answers">ANSWERS</string>
